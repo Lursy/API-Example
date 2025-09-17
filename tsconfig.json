@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2021"
+        ],
+        "target": "es2022",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "outDir": "./build",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "paths": {
+            "@src/*": [
+                "./src/*"
+            ],
+        }
+    }
+}
