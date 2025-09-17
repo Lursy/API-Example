@@ -1,21 +1,26 @@
-import { FindUserByIdUseCase } from '@src/modules/users/application/use-cases/find-user-by-id.use-case';
-import { User } from '@src/modules/users/domain/entities/user.entity';
+import { CreateUserDTO } from '../../application/dtos/create-user.dto';
+import { UserService } from '../../application/services/user.service';
 import { ParseBigIntPipe } from '../pipes/parser-bigint.pipe';
-import { Body, Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller("user")
 export class UserController {
     constructor(
-        private readonly findUserById: FindUserByIdUseCase
+        private readonly userService: UserService
     ) { }
 
     @Get()
-    async listUsers(@Query() listUsersDTO) {
-
+    async index() {
+        return { online: true };
     }
 
     @Get(':id')
-    async getById(@Param('id', ParseBigIntPipe) id: bigint): Promise<User> {
-        return this.findUserById.execute(id);
+    async getById(@Param('id', ParseBigIntPipe) id: bigint) {
+        return this.userService.findById(id);
+    }
+
+    @Post()
+    async create(@Body() data: CreateUserDTO) {
+        return this.userService.create(data);
     }
 }

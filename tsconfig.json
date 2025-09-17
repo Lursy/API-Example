@@ -4,8 +4,8 @@
             "es2021"
         ],
         "target": "es2022",
-        "module": "commonjs",
-        "moduleResolution": "node",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
         "outDir": "./build",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,

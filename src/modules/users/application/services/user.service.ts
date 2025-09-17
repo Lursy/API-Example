@@ -1,12 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { User } from '../../domain/entities/user.entity';
-import { ORMUserRepository } from '../../infrastructure/persistence/repositories/user.repositorie';
+import { IUserRepository } from '../../domain/repositories/user.repository';
+import { IUser } from '../../domain/entities/user.entity';
+import { Inject, Injectable } from '@nestjs/common';
+import { CreateUserDTO } from '../dtos/create-user.dto';
 
 @Injectable()
 export class UserService {
-    constructor(private readonly userRepository: ORMUserRepository) {}
+    constructor(
+        @Inject(IUserRepository)
+        private readonly userRepository: IUserRepository
+    ) {}
 
-    findById(id: bigint): Promise<User> {
+    findById(id: bigint): Promise<IUser> {
         return this.userRepository.findById(id);
+    }
+    
+    create(data: CreateUserDTO) {
+        return this.userRepository.create(data);
     }
 }

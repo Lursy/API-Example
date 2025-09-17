@@ -1,5 +1,9 @@
-import { User } from "../entities/user.entity";
+import { CreateUserDTO } from "../../application/dtos/create-user.dto";
+import { IUser } from "../entities/user.entity";
 
-export interface UserRepository {
-    findById: (user: bigint) => Promise<User | null>
+export const IUserRepository = Symbol('IUserRepository');
+
+export interface IUserRepository {
+    findById: (user: bigint) => Promise<IUser>;
+    create: (data: CreateUserDTO) => Promise<IUser>;
 }

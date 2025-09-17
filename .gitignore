@@ -1,6 +1,10 @@
 .idea/
 .vscode/
+migrations/
 node_modules/
 build/
 tmp/
 temp/
+dist/
+certs/
+.env

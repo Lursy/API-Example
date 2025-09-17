@@ -7,10 +7,9 @@ config();
 export const dataSourceOptions: DataSourceOptions = {
     type: "postgres",
     host: process.env.DATABASE_URL,
-    username: "squarecloud",
+    username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     port: Number(process.env.DATABASE_PORT),
-    database: "stable",
     synchronize: false,
     entities: [
         __dirname + '/**/*.entity{.ts,.js}'
@@ -20,8 +19,8 @@ export const dataSourceOptions: DataSourceOptions = {
     ],
     ssl: {
         ca: readFileSync("./certs/certificate.pem").toString(),
-        cert: readFileSync("./certs/client.crt").toString(),
-        key: readFileSync("./certs/client.key").toString(),
+        cert: readFileSync("./certs/ca-certificate.crt").toString(),
+        key: readFileSync("./certs/private-key.key").toString(),
     },
 }
 
